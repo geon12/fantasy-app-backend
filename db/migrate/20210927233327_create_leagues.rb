@@ -2,16 +2,16 @@ class CreateLeagues < ActiveRecord::Migration[6.1]
   def change
     create_table :leagues do |t|
       t.string :name
-      t.int :team_num
+      t.integer :team_num
       t.belongs_to :user, null: false, foreign_key: true
-      t.int :pg_num
-      t.int :sg_num
-      t.int :pf_num
-      t.int :c_num
-      t.int :f_num
-      t.int :g_num
-      t.int :util_num
-      t.int :be_num
+      t.integer :pg_num
+      t.integer :sg_num
+      t.integer :pf_num
+      t.integer :c_num
+      t.integer :f_num
+      t.integer :g_num
+      t.integer :util_num
+      t.integer :be_num
 
       t.timestamps
     end
