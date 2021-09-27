@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  fppg: 1.5
+  nba_team: MyString
+  active: false
+  image_url: MyString
+
+two:
+  name: MyString
+  fppg: 1.5
+  nba_team: MyString
+  active: false
+  image_url: MyString

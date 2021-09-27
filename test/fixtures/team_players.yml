@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fantasy_team: one
+  player: one
+  bench: false
+  utility: false
+
+two:
+  fantasy_team: two
+  player: two
+  bench: false
+  utility: false
