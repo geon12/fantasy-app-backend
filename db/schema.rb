@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_27_234400) do
+ActiveRecord::Schema.define(version: 2021_09_28_002745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "commissioners", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "league_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["league_id"], name: "index_commissioners_on_league_id"
+    t.index ["user_id"], name: "index_commissioners_on_user_id"
+  end
 
   create_table "fantasy_teams", force: :cascade do |t|
     t.string "team_name"
@@ -37,7 +46,6 @@ ActiveRecord::Schema.define(version: 2021_09_27_234400) do
   create_table "leagues", force: :cascade do |t|
     t.string "name"
     t.integer "team_num"
-    t.bigint "user_id", null: false
     t.integer "pg_num"
     t.integer "sg_num"
     t.integer "pf_num"
@@ -48,7 +56,6 @@ ActiveRecord::Schema.define(version: 2021_09_27_234400) do
     t.integer "be_num"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_leagues_on_user_id"
   end
 
   create_table "player_positions", force: :cascade do |t|
@@ -96,11 +103,12 @@ ActiveRecord::Schema.define(version: 2021_09_27_234400) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "commissioners", "leagues"
+  add_foreign_key "commissioners", "users"
   add_foreign_key "fantasy_teams", "leagues"
   add_foreign_key "fantasy_teams", "users"
   add_foreign_key "free_agents", "leagues"
   add_foreign_key "free_agents", "players"
-  add_foreign_key "leagues", "users"
   add_foreign_key "player_positions", "players"
   add_foreign_key "player_positions", "positions"
   add_foreign_key "team_players", "fantasy_teams"
