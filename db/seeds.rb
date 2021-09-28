@@ -8,6 +8,7 @@
 
 require 'csv'
 
+
 player_data = CSV.read("./bball.csv")
 player_data = player_data[1..player_data.length]
 
@@ -41,11 +42,15 @@ for player in player_data
 end
 
 #Create Users
+10.times do
+    User.create(username:Faker::Internet.unique.username, email:Faker::Internet.unique.email)
+end
 
 #Create League
-
+league = League.create(name:"Flatiron League", team_num:10, pf_num:rand(1..3),sf_num:rand(1..3),sg_num:rand(1..3),pg_num:rand(1..3),f_num:rand(1..3),
+c_num:rand(1..3),g_num:rand(1..3),be_num:rand(1..3),util_num:rand(1..3))
 #Create Commissioner
-
+Commissioner.create(user:User.first,league:league)
 #Create FreeAgents
 
 #Create FantasyTeam
