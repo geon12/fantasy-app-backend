@@ -36,6 +36,9 @@ Position.create(name:"Guard",shorthand:"G")
 Position.create(name:"Power Forward",shorthand:"PF")
 
 #Create Player Posiitons
+for player in player_data
+    PlayerPosition.create(player:Player.find_by(name:player[0]),position:Position.find_by(shorthand:player_data[1]))
+end
 
 #Create Users
 
