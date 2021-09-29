@@ -52,8 +52,17 @@ c_num:rand(1..3),g_num:rand(1..3),be_num:rand(1..3),util_num:rand(1..3))
 #Create Commissioner
 Commissioner.create(user:User.first,league:league)
 #Create FreeAgents
-
+Player.all.each do |player|
+    FreeAgent.create(player:player, league: league)
+end
 #Create FantasyTeam
-
+User.all.each do |user|
+    team = FantasyTeam.create(team_name:Faker::Name.unique.name,user:user,league:league)
+    10.times do
+        free_agent = FreeAgent.all.sample
+        TeamPlayer.create(fantasy_team:team,player:free_agent.player)
+        free_agent.destroy
+    end
+end
 #Create TeamPlayer
 puts("Done seeding")
