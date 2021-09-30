@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "/free_agents", to: "free_agents#show"
 
   post "/signup", to: "users#create"
+  post '/login', to: 'auth#create'
   get "/profile", to: "users#show"
   patch "/profile", to: "users#update"
 end
