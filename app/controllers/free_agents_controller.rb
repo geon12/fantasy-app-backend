@@ -1,0 +1,2 @@
+class FreeAgentsController < ApplicationController
+end
