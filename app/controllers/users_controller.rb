@@ -9,7 +9,8 @@ class UsersController < ApplicationController
 
     def create
         @user = User.create!(user_params)
-        render json: @user, status: :created
+        @token = encode_token({ user_id: @user.id })
+        render json: { user: UserSerializer.new(@user), jwt: @token }, status: :created
     end
 
     private
@@ -19,6 +20,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-        params.permit(:username,:password,:email)
+        params.require(:user).permit(:username,:password,:email)
     end
 end
