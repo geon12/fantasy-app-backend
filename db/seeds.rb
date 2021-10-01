@@ -43,7 +43,7 @@ end
 
 #Create Users
 10.times do
-    User.create(username:Faker::Internet.unique.username, email:Faker::Internet.unique.email)
+    User.create(username:Faker::Internet.unique.username, email:Faker::Internet.unique.email,password:"abcd")
 end
 
 #Create League
