@@ -1,8 +1,8 @@
 class FantasyTeamsController < ApplicationController
-    skip_before_action :authorized, only: [:show]
+    skip_before_action :authorized
     def show
         fantasy_team = FantasyTeam.find(params[:id])
-        render json: fantasy_team, include: ['team_players','team_players.player']
+        render json: fantasy_team, include: ['team_players','team_players.player','league']
     end
 
     def update
