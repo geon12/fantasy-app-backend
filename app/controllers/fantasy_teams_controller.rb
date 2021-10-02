@@ -1,7 +1,7 @@
 class FantasyTeamsController < ApplicationController
-    skip_before_action :authorized
+    
     def show
-        fantasy_team = FantasyTeam.find(params[:id])
+        fantasy_team = find_fantasy_team
         render json: fantasy_team, include: ['team_players','team_players.player','league']
     end
 
@@ -12,14 +12,14 @@ class FantasyTeamsController < ApplicationController
     end
 
     def create
-        fantasy_team = FantasyTeam.create!(fantasy_team_params)
+        fantasy_team = current_user.fantasy_teams.create!(fantasy_team_params)
         render json: fantasy_team, status: :created
     end
 
     private 
 
     def find_fantasy_team
-        FantasyTeam.find(params[:id])
+        current_user.fantasy_teams.find(params[:id])
     end
 
     def fantasy_team_params
