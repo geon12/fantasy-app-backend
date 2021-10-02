@@ -22,7 +22,7 @@ League.destroy_all
 User.destroy_all
 #Create Player
 for player in player_data
-    Player.create({name:player[0], nba_team: player[3], active:true, fppg:player[5],position:player_data[1]})
+    Player.create({name:player[0], nba_team: player[3], active:true, fppg:player[5],position:player[1]})
 end
 
 # #Create Posiitons
