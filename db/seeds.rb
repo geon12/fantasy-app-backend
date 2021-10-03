@@ -55,7 +55,6 @@ end
 #Create FantasyTeam
 
 def add_players (num,pos,team)
-    puts(pos)
     num.times do
         free_agent = FreeAgent.joins(:player).where('players.position = ?',pos).sample
         TeamPlayer.create(fantasy_team:team,player:free_agent.player,utility:false,bench:false)
