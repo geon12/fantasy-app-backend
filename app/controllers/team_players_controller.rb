@@ -13,7 +13,7 @@ class TeamPlayersController < ApplicationController
         team_player = find_team_player
         league = team_player.fantasy_team.league
         FreeAgent.create!(player:team_player.player,league:league)
-        player.destroy
+        team_player.destroy
         head :no_content
     end
 
