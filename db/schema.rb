@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_02_024814) do
+ActiveRecord::Schema.define(version: 2021_10_03_002545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,8 +50,6 @@ ActiveRecord::Schema.define(version: 2021_10_02_024814) do
     t.integer "sg_num"
     t.integer "pf_num"
     t.integer "c_num"
-    t.integer "f_num"
-    t.integer "g_num"
     t.integer "util_num"
     t.integer "be_num"
     t.datetime "created_at", precision: 6, null: false
