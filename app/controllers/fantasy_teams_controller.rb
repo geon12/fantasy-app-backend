@@ -8,7 +8,7 @@ class FantasyTeamsController < ApplicationController
     def update
         fantasy_team = find_fantasy_team
         fantasy_team.update!(fantasy_team_params)
-        render json: task
+        render json: fantasy_team
     end
 
     def create
