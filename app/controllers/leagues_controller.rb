@@ -3,7 +3,7 @@ class LeaguesController < ApplicationController
 
     def index
         leagues = League.all
-        render json: leagues
+        render json: leagues, methods: [:team_count]
     end
 
     def create

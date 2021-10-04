@@ -5,4 +5,8 @@ class League < ApplicationRecord
   has_many :users, through: :commissioners
   has_many :free_agents, dependent: :destroy
   has_many :players, through: :free_agents
+
+  def team_count
+    self.fantasy_teams.count
+  end
 end
