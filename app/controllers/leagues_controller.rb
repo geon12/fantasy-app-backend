@@ -1,5 +1,11 @@
 class LeaguesController < ApplicationController
-    #when you create league, create a commissioner, make all players freeagents 
+    #when you create league, create a commissioner, make all players freeagents
+
+    def index
+        leagues = League.all
+        render json: leagues
+    end
+
     def create
         league = League.create!(league_params)
         Commissioner.create!(user:current_user,league:league)
