@@ -5,7 +5,7 @@ class ApplicationController < ActionController::API
     before_action :authorized
 
     def encode_token(payload)
-        JWT.encode(payload, change_later)
+        JWT.encode(payload, "change_later")
     end
 
     def auth_header
