@@ -1,4 +1,5 @@
 class League < ApplicationRecord
+  validates :name, presence: true
   has_many :fantasy_teams, dependent: :destroy
   has_many :users, through: :fantasy_teams
   has_many :commissioners, dependent: :destroy
