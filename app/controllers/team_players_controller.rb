@@ -17,6 +17,12 @@ class TeamPlayersController < ApplicationController
         head :no_content
     end
 
+    def update
+        team_player = find_team_player
+        team_player.update!(team_player_params)
+        render json: team_player
+    end
+
     private
 
     def find_team_player
@@ -24,6 +30,6 @@ class TeamPlayersController < ApplicationController
     end
 
     def team_player_params
-        params.permit(:fantasy_team_id,:player_id,:bench,:utility)
+        params.permit(:id,:fantasy_team_id,:player_id,:bench,:utility)
     end
 end

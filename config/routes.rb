@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :free_agents, only: [:index]
   end
   resources :fantasy_teams
-  resources :team_players, only: [:create,:destroy]
+  resources :team_players, only: [:create,:destroy,:update]
   #get "/free_agents", to: "free_agents#index"
 
   post "/signup", to: "users#create"
