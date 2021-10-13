@@ -19,19 +19,19 @@ class DataScraper < Kimurai::Base
         initial = player_name.split(' ')[1][0].downcase
         url = "https://www.basketball-reference.com/players/" + initial
         @start_urls = [url]
-        self.crawl!
+        self.parse!(:parse, url: url)#self.crawl!
     end
     
     def parse(response, url:, data: {})
-        months = response.xpath("//div[@class='filter']/div/a")
-        box = response.xpath("//td[@class='center ']/a")
-        months = months.map do |a|
-            a[:href]
-        end
-        puts(months)
-        players =  response.xpath("//th[@class='left ']/a")
-        player_link = ""
+        # months = response.xpath("//div[@class='filter']/div/a")
+        # box = response.xpath("//td[@class='center ']/a")
+        # months = months.map do |a|
+        #     a[:href]
+        # end
         
+        
+        players =  response.xpath("//th[@class='left ']/a | //th[@class='left ']/strong/a")
+        player_link = ""
         players.find do |player|
             
             if (player.text.downcase === @@player_name.downcase)
@@ -40,7 +40,6 @@ class DataScraper < Kimurai::Base
             
         end
 
-       
         
         if (player_link != "")
 
@@ -58,20 +57,23 @@ class DataScraper < Kimurai::Base
 
     def parse_player(response, url:, data: {})
         # date =  response.xpath("//a[text()='#{@@date}']/../../td[@class='right '] | td[@class='right iz']")
-        date =  response.xpath("//a[text()='#{@@date}']/../../td[@class='right ']")
+        date =  response.xpath("//a[text()='#{@@date}']/../../td[@class='right '] | //a[text()='#{@@date}']/../../td[@class='right iz']")
         player_data = {}
-        stats = [:age,:mp,:fg,:fga,:fg_pct,:fg3,:fg3a,:fg3_pct,:ft,:fta,:ft_pct,:drb,
-        :trb,:ast,:stl,:tov,:pf,:pts,:game_score,:plus_minus]
-       
+        stats = [:age,:gs,:mp,:fg,:fga,:fg_pct,:fg3,:fg3a,:fg3_pct,:ft,:fta,:ft_pct,:orb,:drb,
+        :trb,:ast,:stl, :blk, :tov,:pf,:pts,:game_score,:plus_minus]
+        
         date.each_with_index do |st,i|
             
             player_data[stats[i]] = st.text
         end
-        puts player_data
+        player_data
     end
 
     
 
     
 end
-DataScraper.process("Ray Allen","2012-12-01")
+
+#x= DataScraper.process("LeBron James","2020-12-25")
+
+
