@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   post '/login', to: 'auth#create'
   get "/profile", to: "users#show"
   patch "/profile", to: "users#update"
+
+  post "/scrape", to: "scrape#create"
 end
