@@ -23,12 +23,6 @@ class DataScraper < Kimurai::Base
     end
     
     def parse(response, url:, data: {})
-        # months = response.xpath("//div[@class='filter']/div/a")
-        # box = response.xpath("//td[@class='center ']/a")
-        # months = months.map do |a|
-        #     a[:href]
-        # end
-        
         
         players =  response.xpath("//th[@class='left ']/a | //th[@class='left ']/strong/a")
         player_link = ""
